@@ -39,12 +39,3 @@ jobs:
       - name: Get ALB DNS
         working-directory: ./terraform
         run: terraform output alb_dns_name
-
-      - name: Terraform Destroy
-        if: always()
-        working-directory: ./terraform
-        env:
-          TF_VAR_ecr_repository_url: ${{ secrets.ECR_REPOSITORY_URL }}
-          TF_VAR_db_username: "youruser"
-          TF_VAR_db_password: ${{ secrets.DB_PASSWORD }}
-        run: terraform destroy -auto-approve
